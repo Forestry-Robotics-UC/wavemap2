@@ -25,7 +25,9 @@ For the [Docker image](installation.md#docker), add `--build-arg WAVEMAP2_MSGS_L
 
 CMake remembers the option, so later builds of the same workspace keep the last layout that was passed, even without `--cmake-args`.
 When the layout of an existing workspace is switched, colcon rebuilds the packages that depend on the messages.
-Switching from nested to flat, however, leaves the nested layout's `WaveletOctreeNode` files behind in the `install` folder, so we recommend deleting the `build` and `install` folders before switching.
+Switching from nested to flat leaves the nested layout's `WaveletOctreeNode` files behind in the `install` folder.
+They are unused, but if you want a clean `ros2 interface list`, delete the `build` and `install` folders before switching.
+If `ros2 interface show` still reports the old layout after a switch, for example because the workspace was last built with an older version of wavemap, delete the `build` and `install` folders and rebuild.
 
 ### Devcontainer
 

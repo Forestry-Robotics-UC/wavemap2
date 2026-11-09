@@ -34,16 +34,26 @@ endif ()
 message(STATUS "Using the '${WAVEMAP2_MSGS_LAYOUT}' map message layout.")
 
 # Gather the messages whose definition depends on the chosen layout
-# NOTE: The '<base dir>:<relative path>' form makes rosidl read each file from
-#       the layout's directory while installing it as msg/<Name>.msg.
-set(LAYOUT_DIR
-    "${CMAKE_CURRENT_SOURCE_DIR}/msg_layouts/${WAVEMAP2_MSGS_LAYOUT}")
-set(LAYOUT_MSGS
-    "${LAYOUT_DIR}:msg/HashedWaveletOctreeBlock.msg"
-    "${LAYOUT_DIR}:msg/WaveletOctree.msg")
+# NOTE: The layout's files are copied into the build directory, and rosidl
+#       reads them from there using the '<base dir>:<relative path>' form, so
+#       that they get installed as msg/<Name>.msg. The copy is needed because
+#       the install step keeps an installed file whose timestamp is not older
+#       than its source's. The files in the source tree keep their checkout
+#       timestamps, so switching an existing workspace to a layout whose files
+#       are older would leave the previous layout's .msg files installed.
+#       Copying gives a switched layout's files a fresh timestamp.
+set(LAYOUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/msg_layout")
+set(LAYOUT_MSG_NAMES HashedWaveletOctreeBlock WaveletOctree)
 if (WAVEMAP2_MSGS_LAYOUT STREQUAL "nested")
-  list(APPEND LAYOUT_MSGS "${LAYOUT_DIR}:msg/WaveletOctreeNode.msg")
+  list(APPEND LAYOUT_MSG_NAMES WaveletOctreeNode)
 endif ()
+set(LAYOUT_MSGS "")
+foreach (MSG_NAME ${LAYOUT_MSG_NAMES})
+  set(MSG_SRC
+      "${CMAKE_CURRENT_SOURCE_DIR}/msg_layouts/${WAVEMAP2_MSGS_LAYOUT}/msg/${MSG_NAME}.msg")
+  configure_file("${MSG_SRC}" "${LAYOUT_DIR}/msg/${MSG_NAME}.msg" COPYONLY)
+  list(APPEND LAYOUT_MSGS "${LAYOUT_DIR}:msg/${MSG_NAME}.msg")
+endforeach ()
 
 # Declare the messages and services to be generated
 # NOTE: With the 'nested' layout, these mirror interfaces/ros1/wavemap_msgs 1:1.
