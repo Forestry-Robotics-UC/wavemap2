@@ -32,8 +32,8 @@ More details, including the VS Code devcontainer, are on the [installation page]
 ### Docker
 
 ```bash
-git clone https://github.com/akhilj95/wavemap.git
-cd wavemap
+git clone https://github.com/Forestry-Robotics-UC/wavemap2.git
+cd wavemap2
 docker build --target=workspace-built --tag=wavemap2 -f tooling/docker/ros2/full.Dockerfile .
 ```
 
@@ -59,11 +59,11 @@ With [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Deb
 
 ```bash
 sudo apt install git build-essential python3-rosdep python3-colcon-common-extensions
-git clone https://github.com/akhilj95/wavemap.git ~/wavemap
+git clone https://github.com/Forestry-Robotics-UC/wavemap2.git ~/wavemap2
 
 # Make a ros2 workspace and link the ROS2 packages into it instead of the whole repo
 mkdir -p ~/ros2_ws/src
-ln -s ~/wavemap/interfaces/ros2 ~/ros2_ws/src/wavemap
+ln -s ~/wavemap2/interfaces/ros2 ~/ros2_ws/src/wavemap
 
 source /opt/ros/jazzy/setup.bash
 sudo rosdep init  # Skip if rosdep is already initialized
@@ -132,5 +132,5 @@ Everything that is not specific to ROS2 is documented on [wavemap's documentatio
 ## License and credits
 
 Wavemap is released under the [BSD 3-Clause License](LICENSE), copyright Autonomous Systems Lab, ETH Zurich.
-The ROS2 interface was added in this fork by [akhilj95](https://github.com/akhilj95) and is released under the same license.
+The ROS2 interface was added in this fork by [akhilj95](https://github.com/akhilj95) for [Forestry-Robotics-UC](https://github.com/Forestry-Robotics-UC) and is released under the same license.
 For wavemap itself, please refer to the [upstream repository](https://github.com/ethz-asl/wavemap).

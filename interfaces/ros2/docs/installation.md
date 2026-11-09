@@ -13,8 +13,8 @@ We also recommend executing the [post-installation steps for Linux](https://docs
 The ROS2 image is built from a local copy of the repository:
 
 ```bash
-git clone https://github.com/akhilj95/wavemap.git
-cd wavemap
+git clone https://github.com/Forestry-Robotics-UC/wavemap2.git
+cd wavemap2
 docker build --target=workspace-built --tag=wavemap2 -f tooling/docker/ros2/full.Dockerfile .
 ```
 
@@ -78,7 +78,7 @@ Next, clone the code for wavemap:
 
 ```bash
 cd ~
-git clone https://github.com/akhilj95/wavemap.git
+git clone https://github.com/Forestry-Robotics-UC/wavemap2.git
 ```
 
 Unlike for ROS1, the repository must not be cloned into the workspace's `src` folder directly.
@@ -87,7 +87,7 @@ Instead, create a colcon workspace and link only the ROS2 packages into it:
 
 ```bash
 mkdir -p ~/ros2_ws/src
-ln -s ~/wavemap/interfaces/ros2 ~/ros2_ws/src/wavemap
+ln -s ~/wavemap2/interfaces/ros2 ~/ros2_ws/src/wavemap
 ```
 
 Make sure rosdep is initialized:
