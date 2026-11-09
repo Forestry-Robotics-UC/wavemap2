@@ -1,5 +1,7 @@
 # Wavemap for ROS2
 
+[![3D reconstruction of Newer College's Cloister](https://github.com/ethz-asl/wavemap/assets/6238939/e432d4ea-440d-4e9d-adf9-af3ae3b09a10)](https://www.youtube.com/live/ftQhK75Ri1E?si=9txTYyJ78wQuhyN-&t=733)
+
 This repository is a fork of [wavemap](https://github.com/ethz-asl/wavemap), developed by the Autonomous Systems Lab at ETH Zurich, that adds a ROS2 interface.
 The interface targets [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/) on Ubuntu 24.04 (Noble).
 It provides the same server and rosbag processor as wavemap's ROS1 interface, with the same topic and service names, and reads the same YAML config files unmodified.
